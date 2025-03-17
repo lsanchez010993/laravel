@@ -1,0 +1,165 @@
+
+
+/* Alineación del menú a la derecha */
+.menu-right {
+    margin-left: auto;
+    position: relative; 
+}
+
+/* Botón principal del menú */
+.menu-toggle {
+    background-color: #4CAF50;
+  
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+/* Contenedor de los elementos del menú (oculto por defecto) */
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 100%; 
+    right: 0;
+
+    min-width: 160px;
+   
+    
+}
+
+/* Botones del menú desplegable */
+.menu-content button {
+   
+    color: black;
+    padding: 10px 16px;
+    width: 100%;
+    
+    text-align: left;
+    cursor: pointer;
+}
+/* Botón del submenú */
+.submenu-toggle {
+     
+    padding: 10px 16px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+}
+
+
+/* Mostrar el menú cuando el ratón está sobre .menu-right o .menu-content */
+.menu-right:hover .menu-content,
+.menu-content:hover {
+    display: block;
+}
+
+/* Estilos para el submenú */
+.submenu {
+    position: relative;
+}
+
+
+
+/* Contenedor de los elementos del submenú */
+.submenu-content {
+    display: none;
+    position: absolute;
+    top: 0; 
+    right: 100%; 
+    
+    min-width: 160px;
+    z-index: 1;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    margin-right: 5px; 
+}
+
+
+.submenu:hover .submenu-content {
+    display: block;
+}
+
+/* Botones del submenú */
+.submenu-content button {
+  
+    color: black;
+    padding: 10px 16px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.submenu-content button:hover {
+    background-color: #ddd;
+}
+
+
+/* Ajustes para el header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    padding-left: 30px;
+}
+
+.panel_administrador {
+    text-align: left; 
+    font-size: 29px;
+    position: relative; 
+    display: block; 
+    margin: 10px 0; 
+}
+
+
+.banner {
+    width: 100%;
+    background-color: #333;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    position: relative; 
+}
+
+/* Centrar la barra de búsqueda */
+.search-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+
+/* Estilos del input y botón de la barra de búsqueda */
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 30px;
+}
+
+.search-bar button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-left: 30px;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
