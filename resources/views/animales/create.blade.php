@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-
+{{-- @include('components.banner') --}}
 @section('content')
     <h1>Crear Animal</h1>
 

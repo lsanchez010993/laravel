@@ -9,27 +9,33 @@ class AnimalController extends Controller
 {
     public function index(Request $request)
     {
-        $pagina           = $request->query('page', 1);
+        $pagina             = $request->query('page', 1);
         $articulosPorPagina = $request->query('posts_per_page', 6);
-        $orden            = $request->query('orden', 'nombre_asc');
-        $letra            = $request->query('letter');
-
-        $query = Animal::query()->orderBy('id', 'desc'); // Ordena por ID descendente
-
+        $orden              = $request->query('orden', 'nombre_asc');
+        $letra              = $request->query('letter');
+    
+        $query = Animal::query()->orderBy('id', 'desc');
+    
+        // Filtrar por el usuario autenticado
+        if (Auth::check()) {
+            $query->where('usuario_id', Auth::id());
+        }
+    
         if ($orden === 'nombre_asc') {
             $query->orderBy('nombre_comun', 'asc');
         } elseif ($orden === 'nombre_desc') {
             $query->orderBy('nombre_comun', 'desc');
         }
-
+    
         if ($letra) {
             $query->where('nombre_comun', 'like', $letra . '%');
         }
-
+    
         $animales = $query->paginate($articulosPorPagina);
-
+    
         return view('animales.index', compact('animales', 'pagina', 'articulosPorPagina', 'orden', 'letra'));
     }
+    
 
     public function create()
     {
@@ -64,7 +70,7 @@ class AnimalController extends Controller
             'descripcion'       => $request->input('descripcion'),
             'ruta_imagen'       => $rutaImagen,
             'es_mamifero'       => $request->input('es_mamifero'),
-            'usuario_id'        => Auth::user()->id, // Ajusta según tu lógica de usuario
+            'usuario_id'        => Auth::user()->id, 
             'publicado'         => 1,
         ]);
     

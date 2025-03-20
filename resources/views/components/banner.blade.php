@@ -2,16 +2,12 @@
     <link rel="stylesheet" href="{{ asset('css/header.menu.css') }}">
 
     @if(Auth::check())
-        @if(session('administrar'))
-            @php session(['administrar' => true]); @endphp
-            <!-- Panel de Administración -->
-            <span class="panel_administrador">Panel de administración:</span>
-        @else
+     
             <!-- Mensaje de Bienvenida (no administración) -->
             <div class="submenu">
                 <span class="nombre_usuario">Bienvenido: {{ Auth::user()->nombre_usuario }}</span>
             </div>
-        @endif
+       
     @endif
 
     {{-- <!-- Barra de búsqueda -->

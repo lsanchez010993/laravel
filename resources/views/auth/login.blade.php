@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="{{ asset('css/estilos_formulario.css') }}">
+{{-- resources/views/auth/login.blade.php --}}
+@extends('layouts.app')
+
+@section('title', 'Iniciar Sesión')
+
+@section('content')
+    {{-- Estilos y scripts específicos para este formulario --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/estilos_formulario.css') }}"> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
-<body>
+
     <h1>Inicio de sesión</h1>
     
     <form action="{{ route('login') }}" method="POST">
@@ -52,10 +53,9 @@
         @endif
 
         {{-- Inicio de sesión con GitHub --}}
-        <h1>Inicia sesión con:</h1>
+        <h3>Inicia sesión con:</h3>
         <button type="button" onclick="location.href='{{ route('github.auth') }}'">
             <i class="fab fa-github"></i>
         </button>
     </form>
-</body>
-</html>
+@endsection
