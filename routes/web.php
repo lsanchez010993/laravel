@@ -12,7 +12,20 @@ use App\Http\Controllers\Auth\GithubAuthController;
 
 
 
-Route::get('/animales', [AnimalController::class, 'index'])->name('animales.index');
+
+
+
+
+// Ruta para mostrar el formulario (con token)
+// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
+//      ->name('password.reset');
+
+// // Ruta para procesar el formulario
+// Route::post('password/reset', [ResetPasswordController::class, 'reset'])
+//      ->name('password.update');
+
+
+Route::get('/', [AnimalController::class, 'index'])->name('animales.index');
 
 
 
@@ -30,8 +43,24 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+
+
+// 1. Formulario para solicitar enlace de recuperación
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('password.request');
+
+// 2. Enviar el enlace de recuperación por email
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->name('password.email');
+
+// 3. Formulario para restablecer la contraseña (con token)
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+
+// 4. Procesar el restablecimiento de contraseña
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])
+    ->name('password.update');
 
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');

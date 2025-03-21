@@ -22,21 +22,19 @@ class LoginController extends Controller
 
         // Intentar autenticar al usuario
         if (Auth::attempt($credentials, $remember)) {
-            // dd(Auth::user()); // <-- para comprobar
-            // Regenerar la sesión para evitar fijación
+    
             $request->session()->regenerate();
 
-            // Forzar la actualización de la sesión con el user_id
+        
             session(['user_id' => Auth::id()]);
 
-            // Redirigir a la página de animales y, si se marcó "recordar",
-            // puedes agregar cookies personalizadas (opcional)
+        
             return redirect()->route('animales.index')
                 ->withCookie(cookie('nombre_usuario', $request->input('nombre_usuario'), 30 * 24 * 60))
                 ->withCookie(cookie('token', bin2hex(random_bytes(32)), 30 * 24 * 60));
         }
 
-        // Si las credenciales no son válidas, incrementar el contador y volver atrás
+   
         session()->increment('login_attempts');
         return back()->withErrors(['error' => 'Credenciales inválidas'])->withInput();
     }

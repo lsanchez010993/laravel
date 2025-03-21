@@ -4,8 +4,7 @@
 @section('title', 'Iniciar Sesión')
 
 @section('content')
-    {{-- Estilos y scripts específicos para este formulario --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/estilos_formulario.css') }}"> --}}
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
