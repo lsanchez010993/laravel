@@ -9,7 +9,7 @@ body {
     margin: 0;
     flex-direction: column;
 
-    background-image: url('../imagenes/fondosPantalla/oo.webp');
+    background-image: url('../images/fondosPantalla/oo.webp');
     background-size: cover;
     /* Ajusta el tamaño de la imagen para cubrir toda el área */
     background-position: center;

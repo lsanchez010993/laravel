@@ -92,33 +92,40 @@ class AnimalController extends Controller
 
 
     public function update(Request $request, $id)
-    {
-        $animal = Animal::findOrFail($id);
+{
+    $animal = Animal::findOrFail($id);
 
-        // Validar los datos
-        $validatedData = $request->validate([
-            'nombre_comun' => 'required|string|max:255',
-            'nombre_cientifico' => 'nullable|string|max:255',
-            'descripcion' => 'nullable|string',
-            'imagen' => 'nullable|image|max:2048', // máximo 2MB
-            'es_mamifero' => 'required|boolean',
-        ]);
+    // Validar los datos
+    $validatedData = $request->validate([
+        'nombre_comun' => 'required|string|max:255',
+        'nombre_cientifico' => 'nullable|string|max:255',
+        'descripcion' => 'nullable|string',
+        'imagen' => 'nullable|image|max:2048', // máximo 2MB
+        'es_mamifero' => 'required|boolean',
+    ]);
 
-        // Si se ha cargado una nueva imagen, procesarla y actualizar la ruta
-        if ($request->hasFile('imagen')) {
-            // Si el animal ya tiene imagen, opcionalmente se puede eliminar la imagen antigua:
-            if ($animal->ruta_imagen && Storage::disk('public')->exists($animal->ruta_imagen)) {
-                Storage::disk('public')->delete($animal->ruta_imagen);
-            }
-            $imagePath = $request->file('imagen')->store('animales', 'public');
-            $validatedData['ruta_imagen'] = $imagePath;
+    // Si se ha cargado una nueva imagen
+    if ($request->hasFile('imagen')) {
+        // Eliminar la imagen anterior si existe
+        if ($animal->ruta_imagen && file_exists(public_path($animal->ruta_imagen))) {
+            unlink(public_path($animal->ruta_imagen));
         }
 
-        // Actualizar el animal con los datos validados
-        $animal->update($validatedData);
+        // Mover la imagen a la carpeta public/images/animales
+        $file = $request->file('imagen');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images/animales'), $filename);
 
-        return redirect()->route('animales.index')->with('success', 'Animal actualizado correctamente.');
+        // Guardar en la BD la ruta relativa
+        $validatedData['ruta_imagen'] = 'images/animales/' . $filename;
     }
+
+    // Actualizar el animal con los datos validados
+    $animal->update($validatedData);
+
+    return redirect()->route('animales.index')->with('success', 'Animal actualizado correctamente.');
+}
+
     public function destroy($id)
     {
         $animal = Animal::findOrFail($id);

@@ -42,7 +42,7 @@
 
         {{-- Botones --}}
         <button type="submit">Iniciar Sesión</button>
-        <button type="button" onclick="location.href='{{ url('/animales') }}'">Atrás</button>
+        <button type="button" onclick="location.href='{{ url('/') }}'">Atrás</button>
 
         {{-- Mostrar errores generales --}}
         @if(session('errors'))

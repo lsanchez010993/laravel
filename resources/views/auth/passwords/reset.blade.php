@@ -56,6 +56,7 @@
         <button type="submit" class="btn btn-primary">
             Restablecer Contraseña
         </button>
+        <button type="button" onclick="location.href='{{ route('animales.index') }}'">Atrás</button>
     </form>
 </div>
 @endsection
