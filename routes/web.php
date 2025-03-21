@@ -45,6 +45,17 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 
 
+Route::delete('animales/{id}', [AnimalController::class, 'destroy'])->name('animales.destroy');
+
+
+// Ruta para mostrar el formulario de edición de un animal
+Route::get('animales/{id}/edit', [AnimalController::class, 'edit'])->name('animales.edit');
+
+// Ruta para actualizar el animal
+Route::put('animales/{id}', [AnimalController::class, 'update'])->name('animales.update');
+
+
+
 
 // 1. Formulario para solicitar enlace de recuperación
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
