@@ -6,6 +6,9 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+
 
 class GithubAuthController extends Controller
 {
@@ -17,20 +20,32 @@ class GithubAuthController extends Controller
 
     public function callback()
     {
-        // GitHub redirige a esta ruta con los datos de autenticación
         $githubUser = Socialite::driver('github')->user();
-
-        // Verifica si el usuario ya existe, si no, lo crea
-        $user = User::updateOrCreate([
-            'email' => $githubUser->getEmail(),
-        ], [
-            'nombre_usuario' => $githubUser->getNickname() ?? $githubUser->getName(),
-            'password' => bcrypt(str()->random(12)), // Genera una contraseña aleatoria
-        ]);
-
-        // Inicia sesión con el usuario
+    
+        // Buscar el usuario por email
+        $user = User::where('email', $githubUser->getEmail())->first();
+    
+        if (!$user) {
+            
+            $user = User::create([
+                'nombre_usuario' => $githubUser->getNickname(), // O getName()
+                'email'          => $githubUser->getEmail(),
+                'provider'       => 'github',                    // Indica el proveedor
+                'provider_id'    => $githubUser->getId(),          // ID único del usuario en GitHub
+                'password'       => bcrypt(Str::random(16)),
+            ]);
+        } else {
+            // Si el usuario ya existe, actualizamos sus datos del proveedor
+            $user->update([
+                'nombre_usuario' => $githubUser->getNickname(),
+                'provider'       => 'github',
+                'provider_id'    => $githubUser->getId(),
+            ]);
+        }
+    
         Auth::login($user);
-
-        return redirect()->route('animales.index'); // O donde quieras redirigir
+        return redirect('/');
     }
+    
+    
 }

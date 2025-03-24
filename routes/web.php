@@ -11,20 +11,6 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\GithubAuthController;
 
 
-
-
-
-
-
-// Ruta para mostrar el formulario (con token)
-// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
-//      ->name('password.reset');
-
-// // Ruta para procesar el formulario
-// Route::post('password/reset', [ResetPasswordController::class, 'reset'])
-//      ->name('password.update');
-
-
 Route::get('/', [AnimalController::class, 'index'])->name('animales.index');
 
 
@@ -81,6 +67,12 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 // Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 // Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+use App\Http\Controllers\Auth\PasswordChangeController;
+
+Route::get('/password/change', [PasswordChangeController::class, 'showChangeForm'])->name('password.change');
+Route::post('/password/change', [PasswordChangeController::class, 'updatePassword'])->name('password.update');
+
 
 
 

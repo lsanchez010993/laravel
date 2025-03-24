@@ -46,6 +46,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Registrarse</button>
+            <button type="button" onclick="location.href='{{ url('/') }}'">Atrás</button>
         </form>
 
         <p>¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>

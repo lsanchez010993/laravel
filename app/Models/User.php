@@ -11,10 +11,10 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'usuarios';
-    protected $primaryKey = 'id'; // Asegura que Laravel use el ID numérico
+    protected $primaryKey = 'id'; 
 
     protected $fillable = [
-        'nombre_usuario', 'nombre', 'apellido', 'email', 'password', 'avatar', 'token', 'token_recuperacion', 'expiracion_token',
+        'nombre_usuario', 'nombre', 'apellido', 'email', 'password', 'avatar', 'token', 'token_recuperacion', 'expiracion_token', 'provider', 'provider_id',
     ];
 
     protected $hidden = [
@@ -23,6 +23,8 @@ class User extends Authenticatable
         'token',
         'token_recuperacion',
         'expiracion_token',
+        'provider',
+        'provider_id',
     ];
 
     protected $casts = [
@@ -30,9 +32,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // ⚠️ OPCIONAL: Elimina esta función si quieres que Laravel use 'id' por defecto
+    
     public function getAuthIdentifierName()
     {
-        return 'id'; // Cambia 'nombre_usuario' por 'id'
+        return 'id'; 
     }
 }

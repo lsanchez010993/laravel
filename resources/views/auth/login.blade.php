@@ -9,7 +9,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <h1>Inicio de sesión</h1>
-    
+
     <form action="{{ route('login') }}" method="POST">
         @csrf
 
@@ -31,7 +31,8 @@
 
         {{-- Checkbox Recordarme --}}
         <label>
-            <input type="checkbox" name="recordar" value="on" {{ request()->cookie('nombre_usuario') ? 'checked' : '' }}>
+            <input type="checkbox" name="recordar" value="on"
+                {{ request()->cookie('nombre_usuario') ? 'checked' : '' }}>
             Recordarme
         </label><br>
 
@@ -45,7 +46,7 @@
         <button type="button" onclick="location.href='{{ url('/') }}'">Atrás</button>
 
         {{-- Mostrar errores generales --}}
-        @if(session('errors'))
+        @if (session('errors'))
             @foreach (session('errors')->all() as $error)
                 <p class="error">{{ $error }}</p>
             @endforeach

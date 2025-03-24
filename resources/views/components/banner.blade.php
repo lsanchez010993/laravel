@@ -57,7 +57,7 @@
                         Cerrar Sesión
                     </button>
                     
-                    {{-- <button onclick="location.href='{{ route('password.change') }}'">Cambiar Password</button> --}}
+                    <button onclick="location.href='{{ route('password.change') }}'">Cambiar Password</button>
                 @endif
             </div>
         @endif
