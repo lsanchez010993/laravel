@@ -35,19 +35,9 @@
                     <button onclick="location.href='{{ route('register') }}'">Registrarse</button>
                     <button onclick="location.href='{{ route('password.request') }}'">Recuperar Contraseña</button>
                 @else
-                    @if(Auth::user()->nombre_usuario === 'admin')
-                        <!-- Submenú de administración (si el usuario es admin) -->
-                        {{-- <div class="submenu">
-                            <button class="submenu-toggle">Administrar</button>
-                            <div class="submenu-content">
-                                <button onclick="location.href='{{ route('admin.usuarios') }}'">Administrar Usuarios</button>
-                                <button onclick="location.href='{{ route('admin.animales') }}'">Administrar Animales</button>
-                            </div>
-                            <button onclick="location.href='{{ route('animales.pendientes') }}'">Aprobar animales</button>
-                        </div> --}}
-                    @endif
+                
 
-                    <!-- Opciones si la sesión está iniciada -->
+                 
                   
 
                     <button onclick="location.href='{{ route('animales.create') }}'">Insertar Nuevo Artículo</button>
