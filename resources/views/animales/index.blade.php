@@ -3,6 +3,12 @@
 @section('title', 'Menú principal')
 
 @section('content')
+    <br>
+    @if (Auth::check())
+        <h1>Mis Animales</h1>
+    @else
+        <h1>Todos los Animales</h1>
+    @endif
     <div class="contenedor-tarjetas">
         {{-- Listado de animales --}}
         @foreach ($animales as $animal)
@@ -23,12 +29,15 @@
                     @if (Auth::check() && $animal->usuario_id == Auth::id())
                         <div class="acciones">
                             {{-- Botón Editar --}}
-                            <form action="{{ route('animales.edit', $animal->id) }}" method="GET" style="display:inline-block;">
+                            <form action="{{ route('animales.edit', $animal->id) }}" method="GET"
+                                style="display:inline-block;">
                                 <button type="submit" class="btn btn-primary">Editar</button>
                             </form>
 
                             {{-- Botón Eliminar --}}
-                            <form action="{{ route('animales.destroy', $animal->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este animal?');">
+                            <form action="{{ route('animales.destroy', $animal->id) }}" method="POST"
+                                style="display:inline-block;"
+                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar este animal?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>

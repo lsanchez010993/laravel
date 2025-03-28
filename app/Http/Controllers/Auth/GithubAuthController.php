@@ -28,10 +28,10 @@ class GithubAuthController extends Controller
         if (!$user) {
             
             $user = User::create([
-                'nombre_usuario' => $githubUser->getNickname(), // O getName()
+                'nombre_usuario' => $githubUser->getNickname(), 
                 'email'          => $githubUser->getEmail(),
-                'provider'       => 'github',                    // Indica el proveedor
-                'provider_id'    => $githubUser->getId(),          // ID único del usuario en GitHub
+                'provider'       => 'github',                   
+                'provider_id'    => $githubUser->getId(),          
                 'password'       => bcrypt(Str::random(16)),
             ]);
         } else {

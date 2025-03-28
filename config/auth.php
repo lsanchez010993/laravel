@@ -17,7 +17,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class, // Asegura que usa 'usuarios' en lugar de 'users'
+            'model' => App\Models\User::class, 
         ],
     ],
 

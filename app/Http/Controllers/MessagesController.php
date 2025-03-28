@@ -6,14 +6,7 @@ use Illuminate\Http\Request;
 
 class MessagesController
 {
-    // public function store()
-    // {
-    //     request()->validate([
-    //         'name' => 'required'
-    //     ]);
 
-    //     // Aquí puedes agregar la lógica para guardar el mensaje.
-    // }
     public function store(){
 
         request()->validate([

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+
 
 class PasswordChangeController extends Controller
 {
@@ -13,17 +15,24 @@ class PasswordChangeController extends Controller
     public function showChangeForm()
     {
         return view('auth.passwords.change'); 
-        // Puedes poner la vista donde desees, por ejemplo: resources/views/auth/passwords/change.blade.php
+       
     }
 
     // 2. Procesar el cambio de contraseña
     public function updatePassword(Request $request)
     {
         // Validar los campos del formulario
+       
         $request->validate([
-            'current_password'      => 'required',
-            'new_password'          => 'required|min:6|confirmed',
+            'current_password' => ['required'],
+            'new_password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->mixedCase() // requiere mayúsculas y minúsculas
+            ],
         ]);
+        
 
         // Obtener el usuario autenticado
         $user = Auth::user();

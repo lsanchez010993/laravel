@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+
 class ResetPasswordController extends Controller
 {
     /**
@@ -34,7 +35,7 @@ class ResetPasswordController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::min(8)],
         ]);
 
-        // Attempt to reset the user's password
+      
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {

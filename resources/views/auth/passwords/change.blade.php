@@ -1,10 +1,11 @@
 {{-- resources/views/auth/passwords/change.blade.php --}}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cambiar contraseña</title>
-</head>
-<body>
+
+@extends('layouts.app')
+
+@section('title', 'Cambiar Contraseña')
+
+@section('content')
+<div class="container">
     <h1>Cambiar contraseña</h1>
 
     {{-- Mensaje de éxito (si existe) --}}
@@ -25,7 +26,7 @@
         </div>
     @endif
 
-    <form action="{{ route('password.update') }}" method="POST">
+    <form action="{{ route('password.change.update') }}" method="POST">
         @csrf
 
         <div>
@@ -44,6 +45,7 @@
         </div>
 
         <button type="submit">Actualizar contraseña</button>
+        <button type="button" onclick="location.href='{{ route('animales.index') }}'">Volver a inicio</button>
     </form>
-</body>
-</html>
+</div>
+@endsection

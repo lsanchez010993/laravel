@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('auth.register'); // Asegúrate de que `resources/views/auth/register.blade.php` existe
+        return view('auth.register'); 
     }
 
     public function register(Request $request)
@@ -30,7 +30,7 @@ class RegisterController extends Controller
                 'regex:/[A-Z]/', // Debe contener al menos una letra mayúscula
             ],
         ], [
-            // Mensajes de error personalizados
+           
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'password.regex' => 'La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.',

@@ -143,10 +143,10 @@ header {
 
 /* Estilos del input y botón de la barra de búsqueda */
 .search-bar input[type="text"] {
-    padding: 5px;
+   
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding-left: 30px;
+    padding-left: 5px;
 }
 
 .search-bar button {

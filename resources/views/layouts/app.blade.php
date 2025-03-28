@@ -10,9 +10,12 @@
 </head>
 <body>
     @include('components.banner')
+    <div id="resultat"></div>
     <div class="container">
         @yield('content')
     </div>
     <!-- Scripts -->
+    <script src="{{ asset('js/ajax.js') }}"></script>
+
 </body>
 </html>

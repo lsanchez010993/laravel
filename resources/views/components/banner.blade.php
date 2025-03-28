@@ -1,5 +1,7 @@
 <header class="banner">
     <link rel="stylesheet" href="{{ asset('css/header.menu.css') }}">
+    
+
 
     @if(Auth::check())
      
@@ -10,16 +12,17 @@
        
     @endif
 
-    {{-- <!-- Barra de búsqueda -->
-    @if(!$animalesAPI ?? true)
+   
+   
         <div>
-            <form class="search-bar" action="" method="GET" onsubmit="return false;">
+            <div class="search-bar" action="" method="GET" onsubmit="return false;">
                 <input type="text" name="nombre_comun" placeholder="Buscar animal..." autocomplete="on">
-            </form>
+            </div>
         </div>
-    @endif --}}
+       
 
     <div class="menu menu-right">
+        {{-- <div id="resultat"></div> --}}
         @if(!isset($resultadosBusqueda))
             <!-- Menú principal -->
             <button class="menu-toggle">
